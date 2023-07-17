@@ -1,0 +1,74 @@
+import threading
+
+class FibonacciSeries(threading.Thread):
+  def __init__(self):
+    super().__init__()
+
+  def run(self):
+    fibo_numbers = [0, 1]
+    for i in range(2, 10000):
+      fibo_numbers.append(fibo_numbers[i - 1] + fibo_numbers[i - 2])
+
+  def print_fibo_numbers(self):
+    for fibo_number in fibo_numbers:
+      print(fibo_number)
+
+class Square(threading.Thread):
+  def __init__(self):
+    super().__init__()
+
+  def run(self):
+    squares = [i ** 2 for i in range(1, 10000)]
+
+  def print_squares(self):
+    for square in squares:
+      print(square)
+
+class Cube(threading.Thread):
+  def __init__(self):
+    super().__init__()
+
+  def run(self):
+    cubes = [i ** 3 for i in range(1, 10000)]
+
+  def print_cubes(self):
+    for cube in cubes:
+      print(cube)
+
+def main():
+  fibo_series = FibonacciSeries()
+  square = Square()
+  cube = Cube()
+
+  fibo_series.start()
+  square.start()
+  cube.start()
+
+  fibo_series.join()
+  square.join()
+  cube.join()
+
+if __name__ == '__main__':
+  main()
+
+import threading
+
+class Square(threading.Thread):
+  def __init__(self):
+    super().__init__()
+
+  def run(self):
+    squares = [i ** 2 for i in range(1, 10000)]
+
+  def print_squares(self):
+    for square in squares:
+      print(square)
+
+def main():
+  square = Square()
+
+  square.start()
+  square.join()
+
+if __name__ == '__main__':
+  main()
